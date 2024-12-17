@@ -112,6 +112,8 @@ namespace BookApi.Controllers
                 libroExistente.PortadaUrl = libroDto.PortadaUrl;
                 libroExistente.Puntuacion = libroDto.Puntuacion;
                 libroExistente.Sinopsis = libroDto.Sinopsis;
+                libroExistente.Autor = null;
+                libroExistente.Genero = null;
 
                 // Guardar los cambios en la base de datos
                 await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using BookApi.Dtos;
 using BookApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookApi.Controllers
 {
@@ -58,6 +59,24 @@ namespace BookApi.Controllers
 
             return genero;
         }
+
+
+        // GET: api/Generos
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Genero>>> GetGeneros()
+        {
+            try
+            {
+                var generos = await _context.Generos.ToListAsync();
+                return Ok(generos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ocurrió un error: {ex.Message}");
+            }
+        }
+
+
 
     }
 }

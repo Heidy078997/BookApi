@@ -1,6 +1,7 @@
 ﻿using BookApi.Dtos;
 using BookApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookApi.Controllers
 {
@@ -59,6 +60,23 @@ namespace BookApi.Controllers
             }
 
             return Ok(autor);
+        }
+
+        //get all
+
+        // GET: api/Autores
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Autor>>> GetAutores()
+        {
+            try
+            {
+                var autores = await _context.Autors.ToListAsync();
+                return Ok(autores);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ocurrió un error: {ex.Message}");
+            }
         }
     }
 }
