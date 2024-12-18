@@ -38,15 +38,6 @@ namespace BookApi.Models
 
                 entity.Property(e => e.AutorId).HasColumnName("autorId");
 
-                entity.Property(e => e.Apellido)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.FechaNacimiento)
-                    .HasColumnType("date")
-                    .HasColumnName("fechaNacimiento");
-
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false)

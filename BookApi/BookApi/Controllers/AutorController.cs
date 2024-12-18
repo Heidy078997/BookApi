@@ -21,9 +21,9 @@ namespace BookApi.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAutor([FromBody] AutorCreateDto autorDto)
         {
-            if (autorDto == null || string.IsNullOrWhiteSpace(autorDto.Nombre) || string.IsNullOrWhiteSpace(autorDto.Apellido))
+            if (autorDto == null || string.IsNullOrWhiteSpace(autorDto.Nombre) )
             {
-                return BadRequest("El nombre y apellido del autor son obligatorios.");
+                return BadRequest("El nombre del autor es obligatorio.");
             }
 
             try
@@ -32,12 +32,12 @@ namespace BookApi.Controllers
                 var autor = new Autor
                 {
                     Nombre = autorDto.Nombre,
-                    Apellido = autorDto.Apellido,
-                    FechaNacimiento = autorDto.FechaNacimiento
+              
                 };
                 
                 _context.Autors.Add(autor); // Agregar el autor a la base de datos
                 await _context.SaveChangesAsync(); // Guardar los cambios
+
 
                 // Retornar el autor creado con su ID
                 return CreatedAtAction(nameof(GetAutor), new { id = autor.AutorId }, autor);
